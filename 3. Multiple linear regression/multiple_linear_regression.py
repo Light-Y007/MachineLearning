@@ -38,6 +38,10 @@ X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 '''
 
+#Fitting Multiple Linear Regression to the traonong set
+from sklearn.linear_model import LinearRegression
+
+
 
 
 
