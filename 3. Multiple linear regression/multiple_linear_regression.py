@@ -25,6 +25,10 @@ x = ct.fit_transform(x)
 
 x = x[:,1:]
 
+#converting the array into float type from object type
+
+x = np.array(x, dtype=float)
+
 #Splitting the data into training set and test set
 
 from sklearn.model_selection import train_test_split 
@@ -46,8 +50,30 @@ regressor.fit(X_train,y_train)
 #Predicting the test set result
 y_pred = regressor.predict(X_test)
 
+#Building the optimal model using Backward Elimination
+import statsmodels.api as sm
+x = np.append(arr = np.ones((50, 1)).astype(int), values = x, axis = 1)
 
 
+x_opt = x[:, [0, 1, 2, 3, 4, 5]]
+regressor_OLS  = sm.OLS(endog = y, exog = x_opt).fit()
+regressor_OLS.summary()
+
+x_opt = x[:, [0, 1, 3, 4, 5]]
+regressor_OLS  = sm.OLS(endog = y, exog = x_opt).fit()
+regressor_OLS.summary()
+
+x_opt = x[:, [0, 3, 4, 5]]
+regressor_OLS  = sm.OLS(endog = y, exog = x_opt).fit()
+regressor_OLS.summary()
+
+x_opt = x[:, [0, 3, 5]]
+regressor_OLS  = sm.OLS(endog = y, exog = x_opt).fit()
+regressor_OLS.summary()
+
+x_opt = x[:, [0, 3]]
+regressor_OLS  = sm.OLS(endog = y, exog = x_opt).fit()
+regressor_OLS.summary()
 
 
 
